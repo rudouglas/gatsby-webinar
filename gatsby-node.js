@@ -1,6 +1,7 @@
 const path = require(`path`)
 
 const JANKY_SITE = process.env.JANKY_SITE === 'true' ? true : false
+console.log(JANKY_SITE)
 const SCALE_PRODUCTS = parseInt(process.env.SCALE_PRODUCTS)
 const limit = JANKY_SITE ? 10000 : 40
 const productMockDataFull = require("./static/MOCK_DATA.json")
@@ -15,25 +16,23 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
     () => productMockData
   ).flat()
   
-  if (JANKY_SITE) {
+  if (!JANKY_SITE) {
     console.log(`scaled ${productData.length}`)
-    await Promise.all(
-      productData.map((product, index) => {
-        const nodeContent = JSON.stringify(product)
-        const nodeMeta = {
-          id: JSON.stringify(index),
-          parent: null,
-          children: [],
-          internal: {
-            type: `Products`,
-            content: nodeContent,
-            contentDigest: createContentDigest(product),
-          },
-        }
-        const node = Object.assign({}, product, nodeMeta)
-        createNode(node)
-      })
-    )
+    productData.map((product, index) => {
+      const nodeContent = JSON.stringify(product)
+      const nodeMeta = {
+        id: JSON.stringify(index),
+        parent: null,
+        children: [],
+        internal: {
+          type: `Products`,
+          content: nodeContent,
+          contentDigest: createContentDigest(product),
+        },
+      }
+      const node = Object.assign({}, product, nodeMeta)
+      createNode(node)
+    })
   } else {
     for (let i = 0; i < productData.length; i++) {
       const nodeContent = JSON.stringify(productData[i])
@@ -135,26 +134,24 @@ exports.createPages = async ({ graphql, actions }) => {
     const products = result.data.allProducts.nodes
     const firstId = products[0].id
 
-    await Promise.all(
-      products.map(async (node, index) => {
-        const nextId = products[index + 1] ? products[index + 1].id : firstId;
-        createPage({
-          path: `products/${node.id}`,
-          component: ProductSingle,
-          context: {
-            id: node.id,
-            nextId,
-            jankySite: JANKY_SITE,
-            jankyCompany: node.janky_company,
-            jankyJob: node.janky_job,
-            jankyWallet: node.janky_wallet,
-            overPriced: node.over_priced,
-            currency: node.currency,
-            material: node.material,
-            product: node.product,
-          }, // This is to pass data as props to the component.
-        })
+    products.map(async (node, index) => {
+      const nextId = products[index + 1] ? products[index + 1].id : firstId;
+      createPage({
+        path: `products/${node.id}`,
+        component: ProductSingle,
+        context: {
+          id: node.id,
+          nextId,
+          jankySite: JANKY_SITE,
+          jankyCompany: node.janky_company,
+          jankyJob: node.janky_job,
+          jankyWallet: node.janky_wallet,
+          overPriced: node.over_priced,
+          currency: node.currency,
+          material: node.material,
+          product: node.product,
+        }, // This is to pass data as props to the component.
       })
-    )
+    })
   }
 }
