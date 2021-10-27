@@ -3,16 +3,21 @@
   <a href="https://www.gatsbyjs.com">
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
+    <a href="https://www.trynewrelic.com/gatsby">
+    <img alt="New Relic" src="https://newrelic.com/themes/custom/curio/assets/mediakit/NR_logo_Horizontal_Rev.png" width="80" />
+  </a>
 </p>
 <h1 align="center">
-  Gatsby's default starter
+  Gatsby ❤️ New Relic Webinar
 </h1>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Using Gatsby to deliver large websites can speed up end users’ experiences. However, as those projects scale, many development teams are slowed down by long build times.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+What if we could give developers more (easily accessible) visibility into the build process? Learn how the New Relic team built a plugin that provides instant observability into the entire Gatsby build process, exporting vital telemetry data from within the belly of the beast. With events, metrics, logs, and traces, we are able to contextualize and identify performance issues within our plugins, 3rd party APIs, and other parts of our website.
 
-## 🚀 Quick start
+Follow along with us as we instrument a demo website with `gatsby-build-newrelic`
+
+## Getting Started
 
 1.  **Create a Gatsby site.**
 
