@@ -16,6 +16,17 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
+      resolve: "gatsby-build-newrelic",
+      options: {
+        NR_LICENSE_KEY: process.env.NEW_RELIC_LICENSE_KEY,
+        NR_ACCOUNT_ID: process.env.NEW_RELIC_ACCOUNT_ID,
+        SITE_NAME: process.env.SITE_NAME,
+        customTags: {
+          featureFlag: process.env.JANKY_SITE,
+        }
+      }
+    },
+    {
       resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
