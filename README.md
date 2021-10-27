@@ -73,3 +73,21 @@ SITE_NAME= <This can be anything>
 run `npm run build` locally to build and ship your data to New Relic One. 
 
 ## 🎨 Visualizing your builds
+Head over to the [Gatsby Builds Quickstart](https://developer.newrelic.com/instant-observability/gatsby-build/d234c09c-3338-4713-8340-ca75766445d6/) to get prepopulated dashboards. To get started, click the `+ Install quickstart` button. 
+![Screen Shot 2021-10-27 at 10 00 31 AM](https://user-images.githubusercontent.com/10321085/139113789-ee91016b-af20-4d1a-90ef-096c6cf06a33.png)
+Click on `Begin Installation`
+![Screen Shot 2021-10-27 at 10 12 26 AM](https://user-images.githubusercontent.com/10321085/139113987-cad66bd6-4974-48d5-873e-3439e094052e.png)
+Since we already instrumented our Gatsby site, we can Skip the installation process. Click `Skip this step`
+![Screen Shot 2021-10-27 at 10 12 43 AM](https://user-images.githubusercontent.com/10321085/139114095-07ff5bd3-139d-4455-90b1-19c6d345499e.png)
+When you click `See your data` you should be dropped into your new ✨ beautiful ✨ Gatsby Build dashboard
+
+![image](https://user-images.githubusercontent.com/10321085/139114484-654cf27a-ca8c-4341-a757-5cfa99d50295.png)
+
+## Deploying the non janky version of the website
+🚨  **Very important: Before you do another build make sure to run `gatsby clean`** 🚨
+
+9. Run `gatsby clean`
+
+10. Change the `JANKY_SITE` environment variable in `.env` to false
+ 
+11. Go ahead and look at the changes in build times for this build in your Gatsby Builds Dashboard in [New Relic One](https://one.newrelic.com)
