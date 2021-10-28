@@ -89,6 +89,9 @@ exports.createPages = async ({ graphql, actions }) => {
     for (let i = 0; i < products.length; i++) {
       const nextId = products[i + 1] ? products[i + 1].id : firstId;
       const node = products[i];
+      if (node.janky_company.length >= 10) {
+				console.error(`Error: this page is not as janky as it could be, please unfix`)
+			}
       createPage({
         path: `products/${node.id}`,
         component: ProductSingle,
